@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 object DataStore {
-    val Context.dataStore by preferencesDataStore(name = "settings")
+    private val Context.dataStore by preferencesDataStore(name = "settings")
     suspend fun saveToDataStore(context: Context, value: String, isNameSelected : Boolean) {
 
         val dataStore = context.dataStore

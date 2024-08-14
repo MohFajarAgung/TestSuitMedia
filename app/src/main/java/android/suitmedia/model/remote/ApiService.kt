@@ -1,8 +1,6 @@
 package android.suitmedia.model.remote
 
-import android.suitmedia.model.data.User
 import android.suitmedia.model.data.UserResponse
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 

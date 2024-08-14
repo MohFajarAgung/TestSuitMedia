@@ -4,7 +4,6 @@ import android.suitmedia.ui.theme.Poppins
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -18,7 +17,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun Header(
     modifier: Modifier = Modifier,
-    name : String
+    name: String
 ) {
     Column(
         modifier = modifier.fillMaxWidth()

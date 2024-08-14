@@ -1,12 +1,10 @@
 package android.suitmedia.ui.screen
 
-import android.suitmedia.model.data.DataStore
 import android.suitmedia.ui.component.CustomButton
 import android.suitmedia.ui.component.Header
 import android.suitmedia.ui.theme.Poppins
 import android.suitmedia.viewmodel.MainViewModel
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
@@ -28,15 +26,19 @@ fun SecondScreen(
     mainViewModel: MainViewModel,
     navController: NavController,
     modifier: Modifier = Modifier
-){
-
+) {
     val context = LocalContext.current
-    val name = mainViewModel.getFromDataStore(context,false).collectAsState(initial = "Default value")
-    val selectedUser = mainViewModel.getFromDataStore(context, true).collectAsState(initial = "Default value")
-    Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center){
-        Box(modifier = modifier
-            .align(Alignment.TopCenter)
-            .padding(20.dp)){
+    val name =
+        mainViewModel.getFromDataStore(context, false).collectAsState(initial = "Default value")
+    val selectedUser =
+        mainViewModel.getFromDataStore(context, true).collectAsState(initial = "Default value")
+
+    Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Box(
+            modifier = modifier
+                .align(Alignment.TopCenter)
+                .padding(20.dp)
+        ) {
             name.value?.let { Header(name = it) }
         }
         selectedUser.value?.let {
@@ -49,15 +51,20 @@ fun SecondScreen(
                     fontSize = 24.sp,
                     fontFamily = Poppins
                 ),
+                modifier = modifier.padding(bottom = 100.dp)
             )
         }
-          Box(modifier = modifier
-              .align(Alignment.BottomCenter)
-              .padding(30.dp), contentAlignment = Alignment.BottomCenter){
-          CustomButton(text = "Choose a User", onClick = {
-              navController.navigate(route = "thirdScreen")
-          })
-          }
-      }
+        Box(
+            modifier = modifier
+                .align(Alignment.BottomCenter)
+                .padding(30.dp), contentAlignment = Alignment.BottomCenter
+        ) {
+            CustomButton(text = "Choose a User", onClick = {
+                navController.navigate(route = "thirdScreen")
+            })
+        }
+    }
+
+
 
 }

@@ -3,18 +3,13 @@ package android.suitmedia.ui.component
 import android.suitmedia.R
 import android.suitmedia.ui.theme.Poppins
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
@@ -56,9 +51,9 @@ fun TopAppBarWithNavigation(navController: NavController, modifier: Modifier = M
             )
         },
         title = {
-            Box(modifier = modifier.fillMaxWidth()
-
-                , contentAlignment = Alignment.Center) {
+            Box(
+                modifier = modifier.fillMaxWidth(), contentAlignment = Alignment.Center
+            ) {
                 IconButton(
                     modifier = modifier.align(Alignment.CenterStart),
                     onClick = { navController.navigateUp() }) {
@@ -86,12 +81,6 @@ fun TopAppBarWithNavigation(navController: NavController, modifier: Modifier = M
                     ),
                 )
             }
-        },
-        navigationIcon = {
-            if (navController.previousBackStackEntry != null) {
-
-
-            } else null
         },
 
 

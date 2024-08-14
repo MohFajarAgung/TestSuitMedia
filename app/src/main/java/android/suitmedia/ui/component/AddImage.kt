@@ -16,8 +16,8 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun AddImage(
-    shape: Shape = RoundedCornerShape(50.dp),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    shape: Shape = RoundedCornerShape(50.dp)
 ) {
     Box(
         modifier = modifier
@@ -27,7 +27,7 @@ fun AddImage(
             }
     ){
         Image(
-            painter = painterResource(id = R.drawable.ic_photo), // Replace 'logo' with your image name
+            painter = painterResource(id = R.drawable.ic_photo),
             contentDescription = "Logo Image",
             modifier = modifier
                 .size(150.dp)

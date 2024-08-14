@@ -69,7 +69,7 @@ fun FirstScreen(
 
         // Background Image
         Image(
-            painter = painterResource(id = R.drawable.bg), // Replace with your image resource
+            painter = painterResource(id = R.drawable.bg),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
@@ -116,6 +116,8 @@ fun FirstScreen(
                                     }
                                 }
                             }
+                        }else{
+                            Toast.makeText(context, "Isi Palindrome", Toast.LENGTH_SHORT).show()
                         }
                     }
                 )
