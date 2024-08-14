@@ -5,6 +5,7 @@ import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.unit.sp
@@ -38,3 +39,11 @@ val Typography = Typography(
 
 )
 
+val Poppins = FontFamily(
+    Font(R.font.poppins_black, FontWeight.Black, FontStyle.Normal),
+    Font(R.font.poppins_bold , FontWeight.Bold, FontStyle.Normal),
+    Font(R.font.poppins_light, FontWeight.Normal, FontStyle.Normal),
+    Font(R.font.poppins_medium, FontWeight.Medium, FontStyle.Normal),
+    Font(R.font.poppins_regular, FontWeight.Normal, FontStyle.Normal),
+    Font(R.font.poppins_thin, FontWeight.Thin, FontStyle.Normal),
+)

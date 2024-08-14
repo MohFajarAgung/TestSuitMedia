@@ -2,6 +2,7 @@ package android.suitmedia
 
 import android.os.Bundle
 import android.suitmedia.model.remote.ApiService
+import android.suitmedia.model.remote.RetrofiClient
 import android.suitmedia.ui.screen.AppNavigation
 import android.suitmedia.ui.screen.FirstScreen
 import androidx.activity.ComponentActivity
@@ -19,6 +20,7 @@ import android.suitmedia.viewmodel.ViewModelFactory
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.rememberNavController
+import retrofit2.Retrofit
 
 class MainActivity : ComponentActivity() {
 
@@ -26,7 +28,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         // Make sure the content can extend into the system bars
         WindowCompat.setDecorFitsSystemWindows(window, false)
-     val mainViewModel = ViewModelProvider(this,ViewModelFactory())[MainViewModel::class.java]
+        val apiService = RetrofiClient.instace
+        val mainViewModel = ViewModelProvider(this, ViewModelFactory(apiService))[MainViewModel::class.java]
 
         setContent {
             TestSuitMediaTheme {

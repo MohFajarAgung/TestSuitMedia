@@ -1,7 +1,6 @@
 package android.suitmedia.ui.screen
 
 import android.suitmedia.R
-import android.suitmedia.model.data.DataStore
 import android.suitmedia.ui.component.AddImage
 import android.suitmedia.ui.component.CustomButton
 import android.suitmedia.ui.component.CustomTextField
@@ -32,7 +31,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import kotlinx.coroutines.Dispatchers
 
 
 @Composable
@@ -87,17 +85,17 @@ fun FirstScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 AddImage()
-                Spacer(modifier = Modifier.height(40.dp))
+                Spacer(modifier = modifier.height(40.dp))
                 CustomTextField(
                     value = nameTextState.value,
                     onTextChange = { nameTextState.value = it },
-                    text = "Nama",
-                    modifier = Modifier.padding(vertical = 12.dp)
+                    text = "Name",
+                    modifier = modifier.padding(vertical = 12.dp)
                 )
                 CustomTextField(
                     value = palindromeTextState.value,
                     onTextChange = { palindromeTextState.value = it },
-                    text = "Palindrom",
+                    text = "Palindrome",
                     modifier = Modifier.padding(vertical = 12.dp)
                 )
                 Spacer(modifier = Modifier.height(30.dp))
@@ -125,7 +123,8 @@ fun FirstScreen(
                     text = "NEXT",
                     onClick = {
                         if(nameTextState.value.isNotEmpty()){
-                            mainViewModel.saveToDataStore(context, nameTextState.value)
+                            mainViewModel.resetDataStore(context)
+                            mainViewModel.saveToDataStore(context, nameTextState.value, false)
                             navController.navigate(route = "secondScreen")
                         }else{
                             Toast.makeText(context, "Isi Nama Anda!!", Toast.LENGTH_SHORT).show()

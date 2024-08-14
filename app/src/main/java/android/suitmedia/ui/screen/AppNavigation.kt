@@ -24,10 +24,16 @@ fun AppNavigation(
             composable("secondScreen") { 
                 Column {
                     TopAppBarWithNavigation(navController = navController)
-                    SecondScreen(mainViewModel = viewModel) }
+                    SecondScreen(mainViewModel = viewModel, navController = navController) }
                 }
                 
-            composable("thirdScreen") { ThirdScreen()}
+            composable("thirdScreen") {
+                Column {
+                TopAppBarWithNavigation(navController = navController)
+                ThirdScreen(mainViewModel = viewModel, navController = navController)
+                }
+
+            }
         }
 
 

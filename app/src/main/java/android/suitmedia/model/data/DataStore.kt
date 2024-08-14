@@ -9,22 +9,45 @@ import kotlinx.coroutines.flow.map
 
 object DataStore {
     val Context.dataStore by preferencesDataStore(name = "settings")
-    suspend fun saveToDataStore(context: Context, value: String) {
+    suspend fun saveToDataStore(context: Context, value: String, isNameSelected : Boolean) {
 
         val dataStore = context.dataStore
-        val exampleKey = stringPreferencesKey("name_key")
-
+        val nameKey = stringPreferencesKey("name_key")
+        val nameSelectedKey = stringPreferencesKey("nameselected_key")
         dataStore.edit { settings ->
-            settings[exampleKey] = value
+            if(!isNameSelected){
+            settings[nameKey] = value
+            }else{
+                settings[nameSelectedKey] = value
+            }
         }
     }
-    fun getFromDataStore(context: Context): Flow<String?> {
+    fun getFromDataStore(context: Context, isNameSelected: Boolean): Flow<String?> {
         val dataStore = context.dataStore
-        val exampleKey = stringPreferencesKey("name_key")
+        val nameKey = stringPreferencesKey("name_key")
+        val nameSelectedKey = stringPreferencesKey("nameselected_key")
+
+
 
         return dataStore.data
             .map { preferences ->
-                preferences[exampleKey] ?: "Nama"
+            if(!isNameSelected){
+               preferences[nameKey] ?: "Nama"
+            }else{
+                preferences[nameSelectedKey] ?: "Selected User Name"
+            }
+
             }
     }
+
+    suspend fun resetAllData(context: Context) {
+        val dataStore = context.dataStore
+
+        dataStore.edit { settings ->
+            settings.clear() // hapus data
+        }
+    }
+
+
+
 }

@@ -1,5 +1,6 @@
 package android.suitmedia.ui.component
 
+import android.suitmedia.ui.theme.Poppins
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -14,7 +15,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun CustomButton(
@@ -32,7 +37,16 @@ fun CustomButton(
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2B637B))
 
     ) {
-        Text(text = text)
+        Text(
+            text = text,
+            style = TextStyle(
+                fontStyle = FontStyle.Normal,
+                fontWeight = FontWeight(500),
+                color = Color.White,
+                fontSize = 14.sp,
+                fontFamily = Poppins
+            ),
+        )
 
     }
 

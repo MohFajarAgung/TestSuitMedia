@@ -1,5 +1,6 @@
 package android.suitmedia.ui.component
 
+import android.suitmedia.ui.theme.Poppins
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -26,20 +27,22 @@ fun Header(
             modifier = modifier.padding(vertical = 2.dp),
             text = "Welcome",
             style = TextStyle(
-                color = Color.Gray,
+                fontStyle = FontStyle.Normal,
                 fontWeight = FontWeight(400),
+                color = Color(0xFF04021D),
                 fontSize = 12.sp,
-
-                ),
+                fontFamily = Poppins
+            ),
         )
         Text(
             text = name,
             style = TextStyle(
-                color = Color.Black,
+                fontStyle = FontStyle.Normal,
                 fontWeight = FontWeight(600),
+                color = Color(0xFF04021D),
                 fontSize = 18.sp,
-
-                ),
+                fontFamily = Poppins
+            ),
         )
     }
 }

@@ -1,5 +1,6 @@
 package android.suitmedia.ui.component
 
+import android.suitmedia.ui.theme.Poppins
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.unit.dp
@@ -37,12 +39,15 @@ fun CustomTextField(
         modifier = modifier
             .fillMaxWidth()
             .clip(shape)
-            .background(Color.LightGray)
+            .background(Color.White)
             .padding(start = 25.dp)
         ,
         textStyle = TextStyle(
+            fontStyle = FontStyle.Normal,
+            fontWeight = FontWeight(500),
             color = Color.Black,
             fontSize = 16.sp,
+            fontFamily = Poppins
         ),
         singleLine = true,
         decorationBox = { innerTextField ->
@@ -57,10 +62,11 @@ fun CustomTextField(
                     Text(
                         text = text,
                         style = TextStyle(
-                            color = Color.Gray,
-                            fontWeight = FontWeight.Bold,
+                            fontStyle = FontStyle.Normal,
+                            fontWeight = FontWeight(500),
+                            color = Color(0xFFE2E3E4),
                             fontSize = 16.sp,
-
+                            fontFamily = Poppins
                         ),
                     )
                 }
