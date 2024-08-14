@@ -16,7 +16,8 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun Header(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    name : String
 ) {
     Column(
         modifier = modifier.fillMaxWidth()
@@ -32,7 +33,7 @@ fun Header(
                 ),
         )
         Text(
-            text = "John Doe",
+            text = name,
             style = TextStyle(
                 color = Color.Black,
                 fontWeight = FontWeight(600),

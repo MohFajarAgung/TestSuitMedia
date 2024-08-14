@@ -1,6 +1,7 @@
 package android.suitmedia.ui.screen
 
 import android.suitmedia.ui.component.TopAppBarWithNavigation
+import android.suitmedia.viewmodel.MainViewModel
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -13,16 +14,17 @@ import androidx.navigation.compose.composable
 
 @Composable
 fun AppNavigation(
+    navController: NavHostController,
+    viewModel: MainViewModel,
     modifier: Modifier = Modifier,
-    navController: NavHostController
 ){
     
         NavHost(navController = navController, startDestination = "firstScreen") {
-            composable("firstScreen") { FirstScreen(navController = navController) }
+            composable("firstScreen") { FirstScreen(navController = navController, mainViewModel = viewModel) }
             composable("secondScreen") { 
                 Column {
                     TopAppBarWithNavigation(navController = navController)
-                    SecondScreen() }
+                    SecondScreen(mainViewModel = viewModel) }
                 }
                 
             composable("thirdScreen") { ThirdScreen()}

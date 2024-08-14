@@ -1,9 +1,12 @@
 package android.suitmedia.ui.screen
 
 import android.suitmedia.R
+import android.suitmedia.model.data.DataStore
 import android.suitmedia.ui.component.AddImage
 import android.suitmedia.ui.component.CustomButton
 import android.suitmedia.ui.component.CustomTextField
+import android.suitmedia.viewmodel.MainViewModel
+import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -25,15 +28,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import kotlinx.coroutines.Dispatchers
 
 
 @Composable
 fun FirstScreen(
+    navController: NavController,
+    mainViewModel: MainViewModel,
     modifier: Modifier = Modifier,
-    navController: NavController
 ) {
     val systemUiController = rememberSystemUiController()
     val palindromeTextState = remember {
@@ -50,6 +56,7 @@ fun FirstScreen(
         mutableStateOf("")
     }
 
+    val context = LocalContext.current
     SideEffect {
         systemUiController.setStatusBarColor(
             color = Color.Transparent,
@@ -117,7 +124,12 @@ fun FirstScreen(
                 CustomButton(
                     text = "NEXT",
                     onClick = {
-                      navController.navigate(route = "secondScreen")
+                        if(nameTextState.value.isNotEmpty()){
+                            mainViewModel.saveToDataStore(context, nameTextState.value)
+                            navController.navigate(route = "secondScreen")
+                        }else{
+                            Toast.makeText(context, "Isi Nama Anda!!", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 )
             }
