@@ -1,4 +1,8 @@
 package android.suitmedia.ui.screen
 
-class ThirdScreen {
+import androidx.compose.runtime.Composable
+
+@Composable
+fun ThirdScreen(){
+
 }
