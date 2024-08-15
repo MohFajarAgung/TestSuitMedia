@@ -24,10 +24,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         // Menghilangkan navigasi bar
-        window.decorView.apply {
-            systemUiVisibility = (
-                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
-        }
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // Hides the navigation bar
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
         val apiService = RetrofiClient.instace
         val mainViewModel = ViewModelProvider(this, ViewModelFactory(apiService))[MainViewModel::class.java]
 
