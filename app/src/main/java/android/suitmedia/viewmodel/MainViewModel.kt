@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.concurrent.TimeoutException
@@ -26,6 +28,9 @@ class MainViewModel(private val apiService: ApiService) : ViewModel() {
         }
     }
 
+    private val _loading = MutableStateFlow(false)
+    val loading : StateFlow<Boolean> =  _loading
+
     fun getFromDataStore(context: Context,  isSelectedName:Boolean): Flow<String?> {
         return dataStore.getFromDataStore(context, isSelectedName)
     }
@@ -36,18 +41,28 @@ class MainViewModel(private val apiService: ApiService) : ViewModel() {
         }
     }
 
-    fun getUsersFromApi(context: Context){
+    fun getUsersFromApi(context: Context, halaman : Int){
         viewModelScope.launch(Dispatchers.IO) {
+            _loading.value = true
             try {
-                val response = apiService.getUsers(1, 10)
+                val response = apiService.getUsers(halaman, 10)
+                if(response.data.isNotEmpty()){
+                    _loading.value = false
                 _user.value = response.data
+                }else{
+                    _user.value = emptyList()
+                    _loading.value = false
+                }
             } catch (e : TimeoutException){
                 withContext(Dispatchers.Main) {
                     Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                    _loading.value = false
+
                 }
             } catch (e : Exception){
                 withContext(Dispatchers.Main) {
                     Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                    _loading.value = false
                 }
             }
         }
